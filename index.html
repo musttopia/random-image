@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -14,60 +15,33 @@
     }
 
     img {
-      display: block;
       width: 90%;
       max-width: 420px;
       max-height: 75vh;
       object-fit: contain;
-      margin: 20px auto;
       border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <h2>🎲 Random Image</h2>
-  <p id="status">กำลังโหลดรูปภาพ...</p>
-  <img id="photo" alt="รูปที่สุ่มได้" hidden>
+  <img id="photo" alt="Random image">
 
   <script>
     const images = [
-      "https://ibb.co/Tqhq15N4",
-      "https://ibb.co/9mNpqh7h",
-      "https://ibb.co/Jw9RNwJW",
-      "https://ibb.co/BHFfNth9",
-      "https://ibb.co/KjWrpYBL",
-      "https://ibb.co/SDWz069W",
-      "https://ibb.co/1G8dYFPJ"
+      "https://i.ibb.co/cKVyL1Wj/153-20261012225014.jpg",
+      "https://i.ibb.co/0RxjkRbp/153-20261012224914.jpg",
+      "https://i.ibb.co/fV2XC9s9/153-20261012224721.jpg",
+      "https://i.ibb.co/rfyf3JXx/153-20261012224639.jpg",
+      "https://i.ibb.co/5hBnXbSx/153-20261012224541.jpg",
+      "https://i.ibb.co/WNqLFHYq/153-20261012224310.jpg",
+      "https://i.ibb.co/DDQRHNm8/153-20261012224147.jpg",
+      "https://i.ibb.co/KzzSQYYR/229be571e1fd0e5cc05785f4039bc979.jpg"
     ];
 
-    const photo = document.getElementById("photo");
-    const status = document.getElementById("status");
+    const i = Math.floor(Math.random() * images.length);
 
-    const validImages = images.filter(url =>
-      url.startsWith("https://") &&
-      !url.startsWith("https://ใส่")
-    );
-
-    if (validImages.length === 0) {
-      status.textContent =
-        "ยังไม่มีลิงก์รูปจริง กรุณาแก้ไขโค้ด";
-    } else {
-      const index = Math.floor(
-        Math.random() * validImages.length
-      );
-
-      photo.onload = () => {
-        photo.hidden = false;
-        status.textContent = "สุ่มรูปสำเร็จ!";
-      };
-
-      photo.onerror = () => {
-        status.textContent =
-          "โหลดรูปไม่ได้ กรุณาตรวจสอบลิงก์รูป";
-      };
-
-      photo.src = validImages[index];
-    }
+    document.getElementById("photo").src =
+      images[i];
   </script>
 </body>
 </html>
