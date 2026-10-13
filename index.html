@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Random Image</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 30px 12px;
+    }
+
+    img {
+      width: 90%;
+      max-width: 420px;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <img id="photo" alt="Random image">
+
+  <script>
+    const images = [
+      "https://ibb.co/Tqhq15N4",
+      "https://ibb.co/9mNpqh7h",
+      "https://ibb.co/Jw9RNwJW",
+      "https://ibb.co/BHFfNth9",
+      "https://ibb.co/KjWrpYBL",
+      "https://ibb.co/SDWz069W",
+      "https://ibb.co/1G8dYFPJ"
+    ];
+
+    const i = Math.floor(Math.random() * images.length);
+
+    document.getElementById("photo").src =
+      images[i];
+  </script>
+</body>
+</html>
