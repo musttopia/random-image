@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -15,16 +14,20 @@
     }
 
     img {
+      display: block;
       width: 90%;
       max-width: 420px;
       max-height: 75vh;
       object-fit: contain;
+      margin: 20px auto;
       border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <img id="photo" alt="Random image">
+  <h2>🎲 Random Image</h2>
+  <p id="status">กำลังโหลดรูปภาพ...</p>
+  <img id="photo" alt="รูปที่สุ่มได้" hidden>
 
   <script>
     const images = [
@@ -37,10 +40,34 @@
       "https://ibb.co/1G8dYFPJ"
     ];
 
-    const i = Math.floor(Math.random() * images.length);
+    const photo = document.getElementById("photo");
+    const status = document.getElementById("status");
 
-    document.getElementById("photo").src =
-      images[i];
+    const validImages = images.filter(url =>
+      url.startsWith("https://") &&
+      !url.startsWith("https://ใส่")
+    );
+
+    if (validImages.length === 0) {
+      status.textContent =
+        "ยังไม่มีลิงก์รูปจริง กรุณาแก้ไขโค้ด";
+    } else {
+      const index = Math.floor(
+        Math.random() * validImages.length
+      );
+
+      photo.onload = () => {
+        photo.hidden = false;
+        status.textContent = "สุ่มรูปสำเร็จ!";
+      };
+
+      photo.onerror = () => {
+        status.textContent =
+          "โหลดรูปไม่ได้ กรุณาตรวจสอบลิงก์รูป";
+      };
+
+      photo.src = validImages[index];
+    }
   </script>
 </body>
 </html>
